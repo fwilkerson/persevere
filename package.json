@@ -1,0 +1,28 @@
+{
+  "name": "persevere",
+  "version": "1.0.0",
+  "description": "Continue in a course of action even in the face of difficulty or with little or no prospect of success.",
+  "module": "dist/persevere.es.js",
+  "main": "dist/persevere.js",
+  "umd:main": "dist/persevere.umd.js",
+  "scripts": {
+    "prepare": "microbundle",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fwilkerson/persevere.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fwilkerson/persevere/issues"
+  },
+  "homepage": "https://github.com/fwilkerson/persevere#readme",
+  "devDependencies": {
+    "eslint": "^4.16.0",
+    "eslint-config-developit": "^1.1.1",
+    "microbundle": "^0.4.3"
+  }
+}
