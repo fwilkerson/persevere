@@ -2,13 +2,15 @@ import zeromq from 'zeromq';
 
 function dealer(options) {
 	const socket = zeromq.socket('dealer');
-	socket.once('message', options.handler);
+	socket.once('message', data => {
+		options.handler(JSON.parse(data));
+	});
 	return new Promise((resolve, reject) => {
 		socket.bind(options.address, error => {
 			if (error) reject(error);
 			else {
 				socket.send(JSON.stringify(options.data));
-				resolve(socket);
+				resolve();
 			}
 		});
 	});
@@ -16,7 +18,9 @@ function dealer(options) {
 
 function subscriber(options) {
 	const socket = zeromq.socket('sub');
-	socket.on('message', options.handler);
+	socket.on('message', (topic, message) => {
+		options.handler(topic.toString('utf8'), JSON.parse(message));
+	});
 	socket.connect(options.address);
 	if (options.topics == null) socket.subscribe(''); // subscribe to all topics
 	else {
@@ -25,7 +29,7 @@ function subscriber(options) {
 			socket.subscribe(topic);
 		});
 	}
-	return Promise.resolve(socket);
+	return Promise.resolve();
 }
 
 export function consumer(options) {
@@ -48,6 +52,7 @@ function router(options) {
 		else send(result);
 	});
 	socket.connect(options.address);
+	return Promise.resolve();
 }
 
 function publisher(options) {
@@ -55,7 +60,13 @@ function publisher(options) {
 	return new Promise((resolve, reject) => {
 		socket.bind(options.address, error => {
 			if (error) reject(error);
-			else resolve(socket);
+			else {
+				resolve({
+					send(topic, message) {
+						socket.send([topic, JSON.stringify(message)]);
+					}
+				});
+			}
 		});
 	});
 }
@@ -65,5 +76,5 @@ export function producer(options) {
 	if (options.router) {
 		promises.push(router(options.router));
 	}
-	return Promise.all(promises);
+	return Promise.all(promises).then(([pubber]) => pubber);
 }

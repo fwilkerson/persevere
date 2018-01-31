@@ -15,12 +15,12 @@ const router = {
 };
 
 producer({ publisher,router })
-	.then(([publisher,router]) => {
+	.then(publisher => {
 		let increment = 0;
 		setInterval(() => {
 			const id = ++increment;
 			console.info(`Publishing message #${id}`);
-			publisher.send(['topic', JSON.stringify({ message: 'World', id })]);
+			publisher.send('Hello', { message: 'World', id });
 		}, 1250);
 	})
 	.catch(console.error);
