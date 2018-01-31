@@ -6,6 +6,7 @@
   "main": "dist/persevere.js",
   "umd:main": "dist/persevere.umd.js",
   "scripts": {
+    "demo": "concurrently -k -n \"FIRST,SECOND,PRODUCER\" -c \"cyan,green,magenta\" \"node demo/consumer\" \"node demo/consumer\" \"node demo/producer\"",
     "prepare": "microbundle -f cjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +25,7 @@
     "zeromq": "^4.6.0"
   },
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "eslint": "^4.16.0",
     "eslint-config-developit": "^1.1.1",
     "microbundle": "^0.4.3",

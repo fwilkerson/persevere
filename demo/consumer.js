@@ -10,9 +10,9 @@ const subscriber = {
 
 const dealer = {
 	address: config.DEALER_ROUTER_ADDRESS,
-	data: {},
+	data: { message: 'A consumer joined', pid: process.pid },
 	handler(snapshot) {
-		console.info('dealer?', JSON.parse(snapshot));
+		console.info(JSON.parse(snapshot));
 	}
 };
 

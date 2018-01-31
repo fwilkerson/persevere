@@ -6,15 +6,21 @@ const publisher = { address: config.PUB_SUB_ADDRESS };
 const router = {
 	address: config.DEALER_ROUTER_ADDRESS,
 	handler(data) {
-		console.info('router?', data);
-		return Promise.resolve([{ message: 'Hello' }, { message: 'Router' }]);
+		console.info(data);
+		return Promise.resolve([
+			{ message: `Hello ${data.pid}` },
+			{ message: `I am ${process.pid}` }
+		]);
 	}
 };
 
 producer({ publisher,router })
 	.then(([publisher,router]) => {
+		let increment = 0;
 		setInterval(() => {
-			publisher.send(['topic', JSON.stringify({ message: 'World' })]);
-		}, 1000);
+			const id = ++increment;
+			console.info(`Publishing message #${id}`);
+			publisher.send(['topic', JSON.stringify({ message: 'World', id })]);
+		}, 1250);
 	})
 	.catch(console.error);
