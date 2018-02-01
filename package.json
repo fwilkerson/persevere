@@ -1,13 +1,14 @@
 {
   "name": "persevere",
   "version": "1.0.0",
-  "description": "Continue in a course of action even in the face of difficulty or with little or no prospect of success.",
+  "description":
+    "Continue in a course of action even in the face of difficulty or with little or no prospect of success.",
   "module": "dist/persevere.es.js",
   "main": "dist/persevere.js",
-  "umd:main": "dist/persevere.umd.js",
   "scripts": {
-    "demo": "concurrently -k -n \"FIRST,SECOND,PRODUCER\" -c \"cyan,green,magenta\" \"node demo/consumer\" \"node demo/consumer\" \"node demo/producer\"",
-    "prepare": "microbundle -f cjs",
+    "demo":
+      "concurrently -k -n \"FIRST,SECOND,PRODUCER\" -c \"cyan,green,magenta\" \"node demo/consumer\" \"node demo/consumer\" \"node demo/producer\"",
+    "prepare": "xo && microbundle -f cjs,es",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,12 +27,13 @@
   },
   "devDependencies": {
     "concurrently": "^3.5.1",
-    "eslint": "^4.16.0",
-    "eslint-config-developit": "^1.1.1",
+    "eslint-config-prettier": "^2.9.0",
     "microbundle": "^0.4.3",
+    "prettier": "^1.10.2",
+    "xo": "^0.18.2",
     "zeromq": "^4.6.0"
   },
-  "eslintConfig": {
-    "extends": "eslint-config-developit"
+  "xo": {
+    "extends": "prettier"
   }
 }
