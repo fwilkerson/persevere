@@ -1,39 +1,17 @@
 {
   "name": "persevere",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description":
     "Continue in a course of action even in the face of difficulty or with little or no prospect of success.",
-  "module": "dist/persevere.es.js",
-  "main": "dist/persevere.js",
-  "scripts": {
-    "demo":
-      "concurrently -k -n \"FIRST,SECOND,PRODUCER\" -c \"cyan,green,magenta\" \"node demo/consumer\" \"node demo/consumer\" \"node demo/producer\"",
-    "prepare": "xo && microbundle -f cjs,es",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fwilkerson/persevere.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Frank A. Wilkerson",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fwilkerson/persevere/issues"
   },
-  "homepage": "https://github.com/fwilkerson/persevere#readme",
-  "peerDependencies": {
-    "zeromq": "^4.6.0"
-  },
-  "devDependencies": {
-    "concurrently": "^3.5.1",
-    "eslint-config-prettier": "^2.9.0",
-    "microbundle": "^0.4.3",
-    "prettier": "^1.10.2",
-    "xo": "^0.18.2",
-    "zeromq": "^4.6.0"
-  },
-  "xo": {
-    "extends": "prettier"
-  }
+  "homepage": "https://github.com/fwilkerson/persevere#readme"
 }
