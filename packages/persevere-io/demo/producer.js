@@ -1,4 +1,4 @@
-const { producer } = require("../dist/persevere");
+const { producer } = require("../dist/persevere-io");
 const config = require("./config");
 
 const publisher = { address: config.PUB_SUB_ADDRESS };

@@ -1,4 +1,4 @@
-const { consumer } = require("../dist/persevere");
+const { consumer } = require("../dist/persevere-io");
 const config = require("./config");
 
 const subscriber = {

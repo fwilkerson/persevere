@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "description":
     "Continue in a course of action even in the face of difficulty or with little or no prospect of success.",
-  "module": "dist/persevere.es.js",
-  "main": "dist/persevere.js",
+  "module": "dist/persevere-io.es.js",
+  "main": "dist/persevere-io.js",
   "scripts": {
+    "build": "microbundle -f cjs,es",
     "demo":
       "concurrently -k -n \"FIRST,SECOND,PRODUCER\" -c \"cyan,green,magenta\" \"node demo/consumer\" \"node demo/consumer\" \"node demo/producer\"",
-    "prepare": "xo && microbundle -f cjs,es"
+    "prepare": "xo && npm run build"
   },
   "repository": {
     "type": "git",
