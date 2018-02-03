@@ -1,20 +1,14 @@
 const { producer } = require("../dist/persevere-io");
-const config = require("./config");
 
-const publisher = { address: config.PUB_SUB_ADDRESS };
+function onInitialize(data) {
+  console.info(data);
+  return Promise.resolve([
+    { message: `Hello ${data.pid}` },
+    { message: `I am ${process.pid}` }
+  ]);
+}
 
-const router = {
-  address: config.DEALER_ROUTER_ADDRESS,
-  handler(data) {
-    console.info(data);
-    return Promise.resolve([
-      { message: `Hello ${data.pid}` },
-      { message: `I am ${process.pid}` }
-    ]);
-  }
-};
-
-producer({ publisher, router })
+producer({ initialize: { onInitialize } })
   .then(publisher => {
     let increment = 0;
     setInterval(() => {
