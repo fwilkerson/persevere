@@ -1,6 +1,6 @@
 {
   "name": "persevere-io",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description":
     "Continue in a course of action even in the face of difficulty or with little or no prospect of success.",
   "module": "dist/persevere-io.es.js",
